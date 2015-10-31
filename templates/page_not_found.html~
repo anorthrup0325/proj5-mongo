@@ -18,7 +18,7 @@
 </script>
 
    <!-- Our own style sheet -->
-   <link rel="stylesheet" href="{{ url_for('static', filename='css/memos.css') }}" />
+   <link rel="stylesheet" href="/static/css/memos.css" />
 
 
 </head>

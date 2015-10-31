@@ -55,7 +55,7 @@
     		<div class="col-xs-11">{{ memo.text }}</div>
     		<div class="col-xs-1">
     			<a class="btn btn-danger btn-xs pull-right glyphicon glyphicon-remove"
-    				href="{{ url_for('func_delete', id=memo._id) }}"></a>
+    				href="{{ url_for('func_delete', id={{ memo._id }}) }}"></a>
     		</div>
     	</div>
     </div>

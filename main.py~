@@ -27,10 +27,27 @@ import logging
 import arrow # Replacement for datetime, based on moment.js
 import datetime # But we may still need time
 from dateutil import tz  # For interpreting local times
+from datetime import tzinfo
 
 # Mongo database
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+
+###
+# Classes
+###
+
+class CustomZone(tzinfo):
+	def utcoffset(self,dt):
+		return self.offset
+	def tzname(self,dt):
+		return self.name
+	def dst(self,dt):
+		return self.dst
+	def __init__(self,off):
+		self.offset = datetime.timedelta(minutes=off)
+		self.dst = datetime.timedelta(minutes=0);
+		self.name = ""
 
 ###
 # Globals
@@ -132,7 +149,7 @@ def humanize_arrow_date( date ):
     try:
         then = arrow.get(date).to('local')
         now = arrow.utcnow().to('local')
-        if then.date() == now.date():
+        if False and then.date() == now.date():
             human = "Today"
         else: 
             human = then.humanize(now)
